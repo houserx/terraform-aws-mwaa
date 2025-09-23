@@ -85,7 +85,7 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more inform
 
 Apache-2.0 Licensed. See [LICENSE](https://github.com/aws-ia/terraform-aws-mwaa/blob/main/LICENSE).
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -175,11 +175,16 @@ No modules.
 |------|-------------|
 | <a name="output_aws_s3_bucket_name"></a> [aws\_s3\_bucket\_name](#output\_aws\_s3\_bucket\_name) | S3 bucket Name of the MWAA Environment |
 | <a name="output_mwaa_arn"></a> [mwaa\_arn](#output\_mwaa\_arn) | The ARN of the MWAA Environment |
+| <a name="output_mwaa_dag_processing_cloudwatch_log_group_arn"></a> [mwaa\_dag\_processing\_cloudwatch\_log\_group\_arn](#output\_mwaa\_dag\_processing\_cloudwatch\_log\_group\_arn) | CloudWatch Log Group ARN for Apache Airflow DAG Processing Logs |
 | <a name="output_mwaa_role_arn"></a> [mwaa\_role\_arn](#output\_mwaa\_role\_arn) | IAM Role ARN of the MWAA Environment |
 | <a name="output_mwaa_role_name"></a> [mwaa\_role\_name](#output\_mwaa\_role\_name) | IAM role name of the MWAA Environment |
+| <a name="output_mwaa_scheduler_cloudwatch_log_group_arn"></a> [mwaa\_scheduler\_cloudwatch\_log\_group\_arn](#output\_mwaa\_scheduler\_cloudwatch\_log\_group\_arn) | CloudWatch Log Group ARN for Apache Airflow Scheduler Logs |
 | <a name="output_mwaa_security_group_id"></a> [mwaa\_security\_group\_id](#output\_mwaa\_security\_group\_id) | Security group id of the MWAA Environment |
 | <a name="output_mwaa_service_role_arn"></a> [mwaa\_service\_role\_arn](#output\_mwaa\_service\_role\_arn) | The Service Role ARN of the Amazon MWAA Environment |
 | <a name="output_mwaa_status"></a> [mwaa\_status](#output\_mwaa\_status) | The status of the Amazon MWAA Environment |
+| <a name="output_mwaa_task_log_group_arn"></a> [mwaa\_task\_log\_group\_arn](#output\_mwaa\_task\_log\_group\_arn) | CloudWatch Log Group ARN for Apache Airflow Task Logs |
+| <a name="output_mwaa_webserver_log_group_arn"></a> [mwaa\_webserver\_log\_group\_arn](#output\_mwaa\_webserver\_log\_group\_arn) | CloudWatch Log Group ARN for Apache Airflow Webserver Logs |
 | <a name="output_mwaa_webserver_url"></a> [mwaa\_webserver\_url](#output\_mwaa\_webserver\_url) | The webserver URL of the MWAA Environment |
 | <a name="output_mwaa_webserver_vpc_endpoint_service"></a> [mwaa\_webserver\_vpc\_endpoint\_service](#output\_mwaa\_webserver\_vpc\_endpoint\_service) | The VPC endpoint for the environment's web server |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+| <a name="output_mwaa_worker_log_group_arn"></a> [mwaa\_worker\_log\_group\_arn](#output\_mwaa\_worker\_log\_group\_arn) | CloudWatch Log Group ARN for Apache Airflow Worker Logs |
+<!-- END_TF_DOCS -->
