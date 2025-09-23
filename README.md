@@ -1,4 +1,4 @@
-# Amazon Managed Workflows for Apache Airflow(MWAA) Module
+# HouseRx Fork Of Amazon Managed Workflows for Apache Airflow(MWAA) Module
 
 This terraform module can be used to deploy [Amazon Managed Workflows for Apache Airflow(MWAA)](https://docs.aws.amazon.com/mwaa/latest/userguide/what-is-mwaa.html) environment.
 
@@ -7,6 +7,21 @@ This terraform module can be used to deploy [Amazon Managed Workflows for Apache
    ✅ Amazon MWAA documentation for more details about [Amazon MWAA](https://docs.aws.amazon.com/mwaa/index.html)
 
    ✅ Amazon MWAA for Analytics [Workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/795e88bb-17e2-498f-82d1-2104f4824168/en-US)
+
+## Note On Release Versioning
+
+This fork was made from v0.0.6 of the AWS IA project.
+Releases for HouseRx's Fork will follow semantic versioning beginning at v1.0.0 where:
+
+- Major version changes will be reserved for any updates to inputs or outputs of the module
+- Minor version changes will be reserved for updates to internal resources without updating inputs or outputs
+- Patch version changes will be reserved for updates which do not change internal resources or module inputs and outputs
+
+Releases for major versions will be made by creating a new branch named: `houserx-release-vM` 
+and cutting a tag from the branch with tag name: `vM.0.0`
+
+Releases for minor versions will be made from the major version branch
+and cutting a tag from that branch with tag name: `vM.m.p`
 
 ## Amazon MWAA Architecture
 
