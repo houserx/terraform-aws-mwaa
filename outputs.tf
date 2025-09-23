@@ -42,3 +42,29 @@ output "aws_s3_bucket_name" {
   description = "S3 bucket Name of the MWAA Environment"
   value       = var.source_bucket_arn == null ? aws_s3_bucket.mwaa[0].id : ""
 }
+
+output "mwaa_dag_processing_cloudwatch_log_group_arn" {
+  description = "CloudWatch Log Group ARN for Apache Airflow DAG Processing Logs"
+  value       = try(aws_mwaa_environment.mwaa.logging_configuration[0].dag_processing_logs[0].cloudwatch_log_group_arn, null)
+}
+
+output "mwaa_scheduler_cloudwatch_log_group_arn" {
+  description = "CloudWatch Log Group ARN for Apache Airflow Scheduler Logs"
+  value       = try(aws_mwaa_environment.mwaa.logging_configuration[0].scheduler_logs[0].cloudwatch_log_group_arn, null)
+}
+
+output "mwaa_task_log_group_arn" {
+  description = "CloudWatch Log Group ARN for Apache Airflow Task Logs"
+  value       = try(aws_mwaa_environment.mwaa.logging_configuration[0].task_logs[0].cloudwatch_log_group_arn, null)
+}
+
+output "mwaa_webserver_log_group_arn" {
+  description = "CloudWatch Log Group ARN for Apache Airflow Webserver Logs"
+  value       = try(aws_mwaa_environment.mwaa.logging_configuration[0].webserver_logs[0].cloudwatch_log_group_arn, null)
+}
+
+output "mwaa_worker_log_group_arn" {
+  description = "CloudWatch Log Group ARN for Apache Airflow Worker Logs"
+  value       = try(aws_mwaa_environment.mwaa.logging_configuration[0].worker_logs[0].cloudwatch_log_group_arn, null)
+}
+
