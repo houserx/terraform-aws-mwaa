@@ -68,3 +68,12 @@ output "mwaa_worker_log_group_arn" {
   value       = try(aws_mwaa_environment.mwaa.logging_configuration[0].worker_logs[0].cloud_watch_log_group_arn, null)
 }
 
+output "mwaa_connections_prefix" {
+  description = "Secrets Manager secrets prefix for MWAA Airflow Connections"
+  value       = "${var.airflow_connection_backend_top_level_prefix}/${var.airflow_connection_backend_connection_prefix}"
+}
+
+output "mwaa_variables_prefix" {
+  description = "Secrets Manager secrets prefix for MWAA Airflow Variables"
+  value       = "${var.airflow_connection_backend_top_level_prefix}/${var.airflow_connection_backend_variable_prefix}"
+}
