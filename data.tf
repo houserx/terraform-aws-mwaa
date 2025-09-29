@@ -9,6 +9,7 @@ data "aws_caller_identity" "current" {}
 # ---------------------------------------------------------------------------------------------------------------------
 data "aws_iam_policy_document" "mwaa_assume" {
   statement {
+    sid     = "AllowAssumeRoleForMWAAServices"
     actions = ["sts:AssumeRole"]
 
     principals {
@@ -50,6 +51,7 @@ data "aws_iam_policy_document" "mwaa_assume" {
 #tfsec:ignore:AWS099
 data "aws_iam_policy_document" "mwaa" {
   statement {
+    sid    = "AllowCreateAirflowLogin"
     effect = "Allow"
     actions = [
       "airflow:PublishMetrics",
@@ -60,6 +62,7 @@ data "aws_iam_policy_document" "mwaa" {
     ]
   }
   statement {
+    sid    = "AllowReadS3SourceBucket"
     effect = "Allow"
     actions = [
       "s3:GetObject*",
@@ -73,6 +76,7 @@ data "aws_iam_policy_document" "mwaa" {
   }
 
   statement {
+    sid    = "AllowReadAirflowLogs"
     effect = "Allow"
     actions = [
       "logs:CreateLogStream",
@@ -89,6 +93,7 @@ data "aws_iam_policy_document" "mwaa" {
   }
 
   statement {
+    sid    = "AllowReadMetadata"
     effect = "Allow"
     actions = [
       "logs:DescribeLogGroups",
@@ -102,6 +107,7 @@ data "aws_iam_policy_document" "mwaa" {
   }
 
   statement {
+    sid    = "AllowControlSQS"
     effect = "Allow"
     actions = [
       "sqs:ChangeMessageVisibility",
@@ -123,6 +129,7 @@ data "aws_iam_policy_document" "mwaa" {
   dynamic "statement" {
     for_each = var.kms_key != null ? [] : [1]
     content {
+      sid    = "AllowKmsEncrypt"
       effect = "Allow"
       actions = [
         "kms:Decrypt",
@@ -147,6 +154,7 @@ data "aws_iam_policy_document" "mwaa" {
   dynamic "statement" {
     for_each = var.kms_key != null ? [1] : []
     content {
+      sid    = "AllowKMSEncrypt"
       effect = "Allow"
       actions = [
         "kms:Decrypt",
@@ -169,6 +177,7 @@ data "aws_iam_policy_document" "mwaa" {
   }
 
   statement {
+    sid    = "AllowAllOnAWSBatch"
     effect = "Allow"
     actions = [
       "batch:*",
@@ -179,6 +188,7 @@ data "aws_iam_policy_document" "mwaa" {
   }
 
   statement {
+    sid    = "AllowAllOnSSMParameters"
     effect = "Allow"
     actions = [
       "ssm:*"
@@ -189,7 +199,8 @@ data "aws_iam_policy_document" "mwaa" {
   }
 
   statement {
-    effect = "Allow"
+    sid    = "AllowAllOnLambda"
+    effect = "AllowAllLogsOnLambdaLogs"
     actions = [
       "logs:*"
     ]
@@ -197,8 +208,25 @@ data "aws_iam_policy_document" "mwaa" {
   }
 
   statement {
+    sid       = "AllowAllCloudWatchOnLambdaLogs"
     effect    = "Allow"
     actions   = ["cloudwatch:*"]
     resources = ["arn:${data.aws_partition.current.id}:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/*"]
+  }
+
+  statement {
+    sid    = "AirflowConnectionBackendReadOnly"
+    effect = "Allow"
+    actions = [
+      "secretsmanager:BatchGetSecretValue",
+      "secretsmanager:DescribeSecret",
+      "secretsmanager:GetSecretValue",
+      "secretsmanager:ListSecretVersionIds",
+      "secretsmanager:ListSecrets",
+    ]
+    resources = [
+      "arn:${data.aws_partition.current.id}:secretsmanager:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:secret:${var.airflow_connection_backend_top_level_prefix}/${var.airflow_connection_backend_connection_prefix}/*",
+      "arn:${data.aws_partition.current.id}:secretsmanager:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:secret:${var.airflow_connection_backend_top_level_prefix}/${var.airflow_connection_backend_variable_prefix}/*"
+    ]
   }
 }
