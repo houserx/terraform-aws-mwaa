@@ -146,6 +146,11 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_additional_principal_arns"></a> [additional\_principal\_arns](#input\_additional\_principal\_arns) | List of additional AWS principal ARNs | `list(string)` | `[]` | no |
 | <a name="input_airflow_configuration_options"></a> [airflow\_configuration\_options](#input\_airflow\_configuration\_options) | (Optional) The airflow\_configuration\_options parameter specifies airflow override options. | `any` | `null` | no |
+| <a name="input_airflow_connection_backend_connection_lookup_pattern"></a> [airflow\_connection\_backend\_connection\_lookup\_pattern](#input\_airflow\_connection\_backend\_connection\_lookup\_pattern) | (Optional) Defines a regex pattern to use for filtering<br/>when listing secrets for Airflow Connections.<br/>Example: ^test | `string` | `"^test"` | no |
+| <a name="input_airflow_connection_backend_connection_prefix"></a> [airflow\_connection\_backend\_connection\_prefix](#input\_airflow\_connection\_backend\_connection\_prefix) | (Optional) Defines the prefix to append after the top level prefix<br/>before prepending the combination to Airflow Connection IDs<br/>when creating entries in AWS Secrets Manager.<br/>Example: my\_top\_level\_prefix/my\_connection\_prefix/my\_prefix\_id | `string` | `"connection"` | no |
+| <a name="input_airflow_connection_backend_top_level_prefix"></a> [airflow\_connection\_backend\_top\_level\_prefix](#input\_airflow\_connection\_backend\_top\_level\_prefix) | (Optional) Defines the prefix the top level prefix<br/>to which the connection and variable prefixes are appended<br/>when creating entries in AWS Secrets Manager<br/>for Airflow Connections and Variables.<br/>Example: my\_top\_level\_prefix/my\_connection\_prefix/my\_prefix\_id | `string` | `"airflow"` | no |
+| <a name="input_airflow_connection_backend_variable_lookup_pattern"></a> [airflow\_connection\_backend\_variable\_lookup\_pattern](#input\_airflow\_connection\_backend\_variable\_lookup\_pattern) | (Optional) Defines a regex pattern to use for filtering<br/>when listing secrets for Airflow Variables.<br/>Example: ^test | `string` | `"^test"` | no |
+| <a name="input_airflow_connection_backend_variable_prefix"></a> [airflow\_connection\_backend\_variable\_prefix](#input\_airflow\_connection\_backend\_variable\_prefix) | (Optional) Defines the prefix to append after the top level prefix<br/>before prepending the combination to Airflow Variable Names<br/>when creating entries in AWS Secrets Manager.<br/>Example: my\_top\_level\_prefix/my\_connection\_prefix/my\_variable\_name | `string` | `"variable"` | no |
 | <a name="input_airflow_version"></a> [airflow\_version](#input\_airflow\_version) | (Optional) Airflow version of your environment, will be set by default to the latest version that MWAA supports. | `string` | `null` | no |
 | <a name="input_create_iam_role"></a> [create\_iam\_role](#input\_create\_iam\_role) | Create IAM role for MWAA | `bool` | `true` | no |
 | <a name="input_create_s3_bucket"></a> [create\_s3\_bucket](#input\_create\_s3\_bucket) | Create new S3 bucket for MWAA. | `string` | `true` | no |
@@ -190,6 +195,7 @@ No modules.
 |------|-------------|
 | <a name="output_aws_s3_bucket_name"></a> [aws\_s3\_bucket\_name](#output\_aws\_s3\_bucket\_name) | S3 bucket Name of the MWAA Environment |
 | <a name="output_mwaa_arn"></a> [mwaa\_arn](#output\_mwaa\_arn) | The ARN of the MWAA Environment |
+| <a name="output_mwaa_connections_prefix"></a> [mwaa\_connections\_prefix](#output\_mwaa\_connections\_prefix) | Secrets Manager secrets prefix for MWAA Airflow Connections |
 | <a name="output_mwaa_dag_processing_cloudwatch_log_group_arn"></a> [mwaa\_dag\_processing\_cloudwatch\_log\_group\_arn](#output\_mwaa\_dag\_processing\_cloudwatch\_log\_group\_arn) | CloudWatch Log Group ARN for Apache Airflow DAG Processing Logs |
 | <a name="output_mwaa_role_arn"></a> [mwaa\_role\_arn](#output\_mwaa\_role\_arn) | IAM Role ARN of the MWAA Environment |
 | <a name="output_mwaa_role_name"></a> [mwaa\_role\_name](#output\_mwaa\_role\_name) | IAM role name of the MWAA Environment |
@@ -198,6 +204,7 @@ No modules.
 | <a name="output_mwaa_service_role_arn"></a> [mwaa\_service\_role\_arn](#output\_mwaa\_service\_role\_arn) | The Service Role ARN of the Amazon MWAA Environment |
 | <a name="output_mwaa_status"></a> [mwaa\_status](#output\_mwaa\_status) | The status of the Amazon MWAA Environment |
 | <a name="output_mwaa_task_log_group_arn"></a> [mwaa\_task\_log\_group\_arn](#output\_mwaa\_task\_log\_group\_arn) | CloudWatch Log Group ARN for Apache Airflow Task Logs |
+| <a name="output_mwaa_variables_prefix"></a> [mwaa\_variables\_prefix](#output\_mwaa\_variables\_prefix) | Secrets Manager secrets prefix for MWAA Airflow Variables |
 | <a name="output_mwaa_webserver_log_group_arn"></a> [mwaa\_webserver\_log\_group\_arn](#output\_mwaa\_webserver\_log\_group\_arn) | CloudWatch Log Group ARN for Apache Airflow Webserver Logs |
 | <a name="output_mwaa_webserver_url"></a> [mwaa\_webserver\_url](#output\_mwaa\_webserver\_url) | The webserver URL of the MWAA Environment |
 | <a name="output_mwaa_webserver_vpc_endpoint_service"></a> [mwaa\_webserver\_vpc\_endpoint\_service](#output\_mwaa\_webserver\_vpc\_endpoint\_service) | The VPC endpoint for the environment's web server |
