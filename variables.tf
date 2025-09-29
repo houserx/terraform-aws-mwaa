@@ -296,3 +296,57 @@ variable "source_cidr" {
   type        = list(string)
   default     = []
 }
+
+variable "airflow_connection_backend_top_level_prefix" {
+  description = <<-EOD
+  (Optional) Defines the prefix the top level prefix
+  to which the connection and variable prefixes are appended
+  when creating entries in AWS Secrets Manager
+  for Airflow Connections and Variables.
+  Example: my_top_level_prefix/my_connection_prefix/my_prefix_id
+  EOD
+  type        = string
+  default     = "airflow"
+}
+
+variable "airflow_connection_backend_connection_prefix" {
+  description = <<-EOD
+  (Optional) Defines the prefix to append after the top level prefix
+  before prepending the combination to Airflow Connection IDs
+  when creating entries in AWS Secrets Manager.
+  Example: my_top_level_prefix/my_connection_prefix/my_prefix_id
+  EOD
+  type        = string
+  default     = "connection"
+}
+
+variable "airflow_connection_backend_connection_lookup_pattern" {
+  description = <<-EOD
+  (Optional) Defines a regex pattern to use for filtering
+  when listing secrets for Airflow Connections.
+  Example: ^test
+  EOD
+  type        = string
+  default     = null
+}
+
+variable "airflow_connection_backend_variable_prefix" {
+  description = <<-EOD
+  (Optional) Defines the prefix to append after the top level prefix
+  before prepending the combination to Airflow Variable Names
+  when creating entries in AWS Secrets Manager.
+  Example: my_top_level_prefix/my_connection_prefix/my_variable_name
+  EOD
+  type        = string
+  default     = "variable"
+}
+
+variable "airflow_connection_backend_variable_lookup_pattern" {
+  description = <<-EOD
+  (Optional) Defines a regex pattern to use for filtering
+  when listing secrets for Airflow Variables.
+  Example: ^test
+  EOD
+  type        = string
+  default     = null
+}
