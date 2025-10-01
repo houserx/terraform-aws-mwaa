@@ -15,12 +15,12 @@ locals {
 
   airflow_secrets_manager_backend_configuration_options = {
     "secrets.backend" = "airflow.providers.amazon.aws.secrets.secrets_manager.SecretsManagerBackend"
-    "secrets.backend_kwargs" = {
+    "secrets.backend_kwargs" = jsonencode({
       "connections_prefix"         = "${var.airflow_connection_backend_top_level_prefix}/${var.airflow_connection_backend_connection_prefix}",
       "connections_lookup_pattern" = "${var.airflow_connection_backend_connection_lookup_pattern}",
       "variables_prefix"           = "${var.airflow_connection_backend_top_level_prefix}/${var.airflow_connection_backend_variable_prefix}",
       "variables_lookup_pattern"   = "${var.airflow_connection_backend_variable_lookup_pattern}"
-    }
+    })
   }
 
   airflow_configuration_options = merge(local.default_airflow_configuration_options, local.airflow_secrets_manager_backend_configuration_options, var.airflow_configuration_options)
