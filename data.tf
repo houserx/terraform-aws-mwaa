@@ -199,8 +199,8 @@ data "aws_iam_policy_document" "mwaa" {
   }
 
   statement {
-    sid    = "AllowAllOnLambda"
-    effect = "AllowAllLogsOnLambdaLogs"
+    sid    = "AllowAllLogsOnLambdaLogs"
+    effect = "Allow"
     actions = [
       "logs:*"
     ]
