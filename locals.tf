@@ -20,7 +20,7 @@ locals {
       "variables_prefix"   = "${var.airflow_connection_backend_top_level_prefix}/${var.airflow_connection_backend_variable_prefix}",
       },
       var.airflow_connection_backend_connection_lookup_pattern != null ? { "connections_lookup_pattern" = "${var.airflow_connection_backend_connection_lookup_pattern}" } : {},
-      var.airflow_connection_backend_variable_lookup_pattern ? { "variables_lookup_pattern" = "${var.airflow_connection_backend_variable_lookup_pattern}" } : {},
+      var.airflow_connection_backend_variable_lookup_pattern != null ? { "variables_lookup_pattern" = "${var.airflow_connection_backend_variable_lookup_pattern}" } : {},
     ))
   }
 
