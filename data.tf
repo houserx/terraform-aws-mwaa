@@ -222,11 +222,19 @@ data "aws_iam_policy_document" "mwaa" {
       "secretsmanager:DescribeSecret",
       "secretsmanager:GetSecretValue",
       "secretsmanager:ListSecretVersionIds",
-      "secretsmanager:ListSecrets",
     ]
     resources = [
       "arn:${data.aws_partition.current.id}:secretsmanager:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:secret:${var.airflow_connection_backend_top_level_prefix}/${var.airflow_connection_backend_connection_prefix}/*",
       "arn:${data.aws_partition.current.id}:secretsmanager:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:secret:${var.airflow_connection_backend_top_level_prefix}/${var.airflow_connection_backend_variable_prefix}/*"
     ]
+  }
+
+  statement {
+    sid    = "AllowListAllSecretsToMWAA"
+    effect = "Allow"
+    actions = [
+      "secretsmanager:ListSecrets",
+    ]
+    resources = ["*"]
   }
 }
